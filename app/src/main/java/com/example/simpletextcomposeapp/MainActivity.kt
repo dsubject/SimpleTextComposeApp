@@ -3,10 +3,20 @@ package com.example.simpletextcomposeapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
+import androidx.compose.ui.unit.dp
 import com.example.simpletextcomposeapp.ui.theme.SimpleTextComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +24,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             GreetingText("World")
-            GreetingButton()
+
         }
     }
 }
@@ -24,7 +34,22 @@ class MainActivity : ComponentActivity() {
 used in, they can be stored in a separate Composables.kt file --- they are so "decoupled"*/
 @Composable
 fun GreetingText(name: String) {
-    Text(text = "Hello $name!")
+    Text(text = "Hello $name!",
+        // modifier is used to change the view
+        // & can chain other attributes
+        modifier = Modifier
+            // the order of the modifiers matters
+            .clickable(onClick = { })
+            .padding(24.dp)
+            .height(240.dp)
+            .width(200.dp),
+        // MaterialTheme and FontWeight are examples of helper classes that have static values we can use
+        style = MaterialTheme.typography.h5,
+        fontWeight = FontWeight.SemiBold
+
+
+
+    )
 }
 
 @Composable
@@ -45,6 +70,6 @@ and also the @Preview annotation*/
 fun DefaultPreview() {
     SimpleTextComposeAppTheme {
         GreetingText("World")
-        GreetingButton()
+
     }
 }
